@@ -1,4 +1,4 @@
-name: Messenger Bot CI
+name: goat bot v3 test 
 
 on:
   push:
