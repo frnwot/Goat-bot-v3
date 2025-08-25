@@ -1,28 +1,30 @@
-name: Deploy Gaot Bot v3
+name: Messenger Bot CI
 
 on:
   push:
-    branches:
-      - v3
-  workflow_dispatch: # allow manual trigger
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  build-and-run:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
         run: npm install
 
-      - name: Create .env file
+      - name: Generate dynamic .env
         run: |
           echo "BOT_NAME=${{ github.event.repository.name }}" >> .env
           echo "OWNER=${{ github.event.head_commit.author.name }}" >> .env
@@ -31,7 +33,7 @@ jobs:
           echo "BRANCH=${{ github.ref_name }}" >> .env
           echo "FB_APPSTATE=${{ secrets.FB_APPSTATE }}" >> .env
 
-
-      - name: Start bot
+      - name: Start the bot
+        env:
+          PORT: 8080
         run: npm start
-        
