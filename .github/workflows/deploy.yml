@@ -1,0 +1,37 @@
+name: Deploy Gaot Bot v3
+
+on:
+  push:
+    branches:
+      - v3
+  workflow_dispatch: # allow manual trigger
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create .env file
+        run: |
+          echo "BOT_NAME=${{ github.event.repository.name }}" >> .env
+          echo "OWNER=${{ github.event.head_commit.author.name }}" >> .env
+          echo "EMAIL=${{ github.event.head_commit.author.email }}" >> .env
+          echo "USERNAME=${{ github.repository_owner }}" >> .env
+          echo "BRANCH=${{ github.ref_name }}" >> .env
+          echo "FB_APPSTATE=${{ secrets.FB_APPSTATE }}" >> .env
+
+
+      - name: Start bot
+        run: npm start
+        
