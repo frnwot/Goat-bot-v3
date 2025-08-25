@@ -105,7 +105,7 @@ jobs:
 2. Clone the repo:
 
    ```bash
-   git clone https://github.com/frn-development/Personal-bot
+   git clone https://github.com/frnwot/Goat-bot-v3
    cd Personal-bot
    npm install
    npm start
