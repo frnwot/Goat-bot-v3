@@ -27,5 +27,4 @@ jobs:
         env:
           PORT: 8080
         run: npm start
-      - name: run goat bot
-        run: goat
+      
