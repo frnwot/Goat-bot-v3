@@ -116,7 +116,7 @@ jobs:
 
    ```bash
    git clone https://github.com/frnwot/Goat-bot-v3
-   cd Personal-bot
+   cd Goat-bot-v3
    npm install
    npm start
    ```
