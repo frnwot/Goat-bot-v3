@@ -6,6 +6,16 @@ Personal Messenger bot built from **Personal-bot** base + selected mods from **M
 - Mods: fb-chat-api, logger, func utilities, and Goat.js runner
 - Owner: Farhan muh tasim (frnwot) — frnbuid2005@gmail.com
 
+## setup 
+ Create `.env` file 
+```
+BOT_NAME=gaot bot v3
+OWNER="Farhan muh tasim"
+EMAIL="frnbuid2005@gmail.com"
+USERNAME="frnwot"
+PORT=3000
+```
+
 ## Quick start
 
 ```bash
